@@ -65,7 +65,7 @@ public class Person {
 
     public void happyBirthday() throws IllegalArgumentException {
         if (age.isPresent()) {
-            age = OptionalInt.of(age.getAsInt());
+            age = OptionalInt.of(age.getAsInt() + 1);
         } else {
             throw new IllegalArgumentException("Невозможно отпразновать ДР, так как мы не знаем возраст");
         }

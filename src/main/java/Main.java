@@ -11,13 +11,26 @@ public class Main {
                 .build();
         System.out.println("У " + mom + " есть сын, " + son);
 
+        if (mom.hasAge()) {
+            mom.happyBirthday();
+            System.out.println("Прошло день рождение мымы, ей теперь " + mom.getAge().getAsInt());
+        }
+
         try {
-            // Не хватает обяхательных полей
-            new PersonBuilder().build();
+            // Нельзя переприсвоить новый возраст
+            mom.setAge(50);
         } catch (IllegalStateException e) {
             e.printStackTrace();
         }
 
+        try {
+            // Не хватает обяхательных полей
+            new PersonBuilder().setName("Анна").build();
+            new PersonBuilder().setSurname("Иванова").build();
+            new PersonBuilder().build();
+        } catch (IllegalStateException e) {
+            e.printStackTrace();
+        }
         try {
             // Возраст недопустимый
             new PersonBuilder().setAge(-100).build();

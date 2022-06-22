@@ -32,8 +32,7 @@ public class PersonBuilder {
     }
 
     public Person build() {
-        if ((name != null && name.isEmpty() && name.isBlank())
-                && (surname != null && surname.isEmpty() && surname.isBlank()))
+        if (stringNullOrBlank(name) || stringNullOrBlank(surname) )
             throw new IllegalStateException("Невозможно создать объект без имени и фамилии");
 
         Person person = new Person(name, surname);
@@ -42,5 +41,8 @@ public class PersonBuilder {
         }
         person.setAddress(address);
         return person;
+    }
+    private boolean stringNullOrBlank(String val) {
+        return val == null || val.isEmpty() || val.isBlank();
     }
 }
